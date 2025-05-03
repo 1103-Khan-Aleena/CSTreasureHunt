@@ -1,6 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include "board.h"// replace? 
+//#include "board.h"// replace? 
 
 class Player {
 private:
@@ -19,17 +19,19 @@ public:
     Player(const Player&);
 
     // Getters
-    int getRow();
-    int getCol();
-    int getHealth(); 
-    int getTreasures(); 
+    int getRow() const;
+    int getCol() const;
+    int getHealth()const; 
+    int getTreasures() const; 
 
     // Setters
+    void setRow(int);
+    void setCol(int);
     void setPosition(int, int);
     void setHealth(int);
     void changeHealth(int);
     void collectTreasure();
-    void displayStats(); 
+    void displayStats() const; 
 
      //operator overloads
      Player operator+(const Player& other) const;
