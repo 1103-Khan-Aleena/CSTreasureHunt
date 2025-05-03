@@ -5,7 +5,6 @@
 
 
 class BoardTiles: public Board{
-   char symbol; //symbol is more like an indicator 
     bool isSurrounded, isEmpty; //Bools act as stauts updates
 
     public:    
@@ -17,19 +16,17 @@ class BoardTiles: public Board{
         //Getters and Setters
         bool getIsSurrouned() const;
         bool getIsEmpty() const;
-        char getSymbol() const; 
         void setIsSurrouned(bool);
         void setIsEmpty(bool);
         void setSymbol(char);
 
+         //Other Methods
+         void clearBoardTiles(); //Maybe i can template this in some way???
+         bool checkEmpty(int, int); //Note to self: want to template , Update: not needed :/
+         bool checkSurrounding(int r, int c);
+         void generateOpponent();
+
         //Virtual method child declaration
         void generateBoard() override; //Note to self: when implementing fill with dots initially then begin randomizing  
-
-        //Other Methods
-        void clearBoardTiles(); //Maybe i can template this in some way???
-        void generateOpponent();
-        //bool checkEmpty(int r, int c, BoardTiles& gameBoard); //Note to self: want to template , Update: not needed :/
-        //bool checkSurrounding(int r, int c, BoardTiles& gameBoard);
-        
 };
 #endif

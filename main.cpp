@@ -15,6 +15,7 @@ int main(){
     cout << userInterface;
     BoardTiles gameBoard(5, 5, displayedBoard2, s1, s2);
     gameBoard.generateBoard();
+    gameBoard.generateOpponent();
     cout << endl << endl <<  gameBoard;
     return 0;
 }

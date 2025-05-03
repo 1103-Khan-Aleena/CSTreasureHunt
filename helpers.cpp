@@ -5,15 +5,6 @@ int generateRandomInt(){
     return generatedNumber;
 }
 
-//Template this so it can pass UserBoard and BoardTile object
-/*bool checkEmpty(int r, int c, BoardTiles& gameBoard){
-    char s = gameBoard.getElementAtTile(r, c); //Gettintg the element at the given space
-    if(s == '.'){ //Dot signifies empty
-       return true; 
-    }
-    return false; //If it makes it past conditional then we know the spot is not empty so retrun false
-}
-
 bool checkSurrounding(int r, int c, BoardTiles& gameBoard){ // 
     char above = gameBoard.getElementAtTile(r, c - 1);
     char below = gameBoard.getElementAtTile(r, c + 1);
@@ -56,4 +47,3 @@ bool checkSurrounding(int r, int c, BoardTiles& gameBoard){ //
     return false;
 }
 
-bool checkBound(){} //Add one and subtract one to users potition dependent on what more the user chooses*/

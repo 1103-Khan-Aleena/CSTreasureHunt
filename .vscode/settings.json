@@ -21,6 +21,7 @@
         "vector": "cpp",
         "complex": "cpp",
         "iterator": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "iostream": "cpp"
     }
 }
