@@ -1,7 +1,8 @@
-#include "Controls.h"
+#include "controls.h"
 #include <iostream> 
+#include "player.h"
 using namespace std;
-
+#include "board.h"
 // Default constructor
 Controls::Controls() {
     userInput = ' ';
@@ -35,7 +36,9 @@ bool Controls::checkValidInput() {
 }
 
 // check if move is within boudns
-bool Controls::checkBound(int row, int col) {
+bool Controls::checkBound(Player& player) {
+    int row = player.getRow(); 
+    int col = player.getCol();
     if (row >= 0 && row < 5 && col >= 0 && col < 5) {
         isBounded = true;
     } else {
@@ -44,7 +47,7 @@ bool Controls::checkBound(int row, int col) {
     return isBounded;
     }
  
-    void Controls::promptForMove(int& row, int& col) {// more of a main function??
+    void Controls::promptForMove(Player& player) {// more of a main function??
         bool validMove = false;
 
         do {
@@ -56,24 +59,33 @@ bool Controls::checkBound(int row, int col) {
         if (!checkValidInput()) {
             cout << "Invalid move. Please try again." <<endl;  // If invalid input, continue the loop to prompt again
         }
+        
+            if (userInput== 'W' || userInput== 'w'){
+                player.setRow(player.getRow() - 1);// should move up
+            }
+            else if(userInput=='A' ||userInput=='a'){
+                player.setCol(player.getCol() - 1);
+            }
+            else if(userInput=='S'||userInput=='s'){
+                player.setRow(player.getRow() + 1);
+            }
+            else if(userInput=='D'||userInput=='d'){
+                player.setCol(player.getCol() + 1);
+            }
+            else{
+                cout<<"invalid move :("<< endl;
+                return;
+            }
+            //upadte the player position 
+            //player.setRow();
+            //player.setCol();
 
-        // move if the input is valid
-        switch (userInput) {
-            case 'W': row--;
-                break; // Move up
-
-            case 'A': col--; 
-                break; // Move left
-
-            case 'S': row++; 
-                break; // Move down
-
-            case 'D': col++; 
-                break; // Move right
-        }
-
+        // upadate board after everymove
+       // board.generateBoard(); cant do this bc boar dis an abbsract class 
+       //updte he users postion after they move,so player.setRow/set Col to upadted spot
+        //cout<<board;
         // Ncheck if the move is within bounds
-        if (!checkBound(row,col)) {
+        if (!checkBound(player)) {
             cout << "Move out of bounds! Try again." << endl;
         } else {
             validMove = true;  // If the move is valid and within bounds, exit the loop
