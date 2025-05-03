@@ -1,6 +1,6 @@
-#include "Player.h"
+#include "player.h"
 #include <iostream>
-
+using namespace std;
 Player::Player(){
     row=0;
     col=0;
@@ -28,6 +28,12 @@ int Player::getRow() const{
 int Player::getCol() const{
     return col;
 }
+
+void Player:: setRow(int newRow) { 
+    row = newRow; }
+
+void Player:: setCol(int newCol) { 
+        col = newCol; }
 
 int Player::getHealth() const{
     return health;
