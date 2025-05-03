@@ -5,12 +5,18 @@ Board::Board(){
     rows = 5;
     columns = 5;
     grid = new char*[columns];
+    for(int i = 0; i < columns; i++){
+        grid[i] = new char[columns];
+    }
 }
 
 Board::Board(int r, int c, char** g){
     rows = r;
     columns = c;
     grid = new char*[columns];
+    for(int k = 0; k < columns; k++){
+        grid[k] = new char[columns];
+    }
     for(int i = 0; i < columns; i++){
         for(int j = 0; j < rows; j++){
             grid[i][j] = g[i][j];
@@ -22,6 +28,9 @@ Board::Board(const Board&rhs){
     rows = rhs.rows;
     columns = rhs.columns;
     grid = new char*[rhs.columns];
+    for(int k = 0; k < columns; k++){
+        grid[k] = new char[columns];
+    }
     for(int i = 0; i < columns; i++){
         for(int j = 0; j < rows; j++){
             grid[i][j] = rhs.grid[i][j];
