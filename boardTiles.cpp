@@ -45,9 +45,6 @@ bool BoardTiles::checkEmpty(int r, int c){
 
 bool BoardTiles::checkSurrounding(int r, int c){
     char above, below, right, left; 
-    //char below = getElementAtTile(r, c + 1);
-    //char  + 1
-    //char left = getElementAtTile(r - 1, c);
     if(r == 0){
         if(c == 0){ //Corner (0,0) case
             right = getElementAtTile(r, c + 1);

@@ -46,16 +46,28 @@ void UserBoard::updateBoard(Player& p, BoardTiles& gameBoard, int pre_x, int pre
     if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'X'){ //Reference hidden board
         if(getElementAtTile(pre_x, pre_y) != 'X'){
             p - 20;
-            cout << p.getHealth() << endl;        
         }
         grid[pre_x][pre_y] = 'X'; //They represent the rows and columns of the 2D array
         grid[player_x][player_y] = 'P'; //If its trap, it will now be on the displayed boards grid, and player will be updated
 
     }
+    else if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'T'){ //Reference hidden board
+        gameBoard.setElementAtTile(pre_x, pre_y, '.'); //Once tresures is collected the game board updates taht spot to empty
+        p.collectTreasure();
+        grid[pre_x][pre_y] = ' ';
+        grid[player_x][player_y] = 'P';
+    }
+    else if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'O'){ //Reference hidden board
+        gameBoard.setElementAtTile(pre_x, pre_y, '.');
+        p - 30;
+        grid[pre_x][pre_y] = ' ';
+        grid[player_x][player_y] = 'P';
+    }
     else{
         grid[pre_x][pre_y] = ' ';
         grid[player_x][player_y] = 'P';
     }
+    gameBoard.generateOpponent();
 }
 
 
