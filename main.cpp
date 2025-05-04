@@ -1,36 +1,54 @@
-#include "Player.h"
-#include <iostream>
+#include "userBoard.h"
+#include "boardTiles.h"
+#include "controls.h"
+#include "helpers.h"
 
-int main() {
-    // Create Player object using the default constructor
-    Player player1;
-    
-    // Display initial stats of player1
-    std::cout << "Player 1 Initial Stats:" << std::endl;
-    player1.displayStats();
+int main(){
+    Player player1(0, 0, 100, 0);
+    char** displayedBoard = new char*[5];
+    char** displayedBoard2 = new char*[5];
+    bool s1 = false;
+    bool s2 = false;
+    bool s3 = false;
+    bool s4 = false;
+    int j = 0, previous_x = 0, previous_y = 0; 
+    char userInput;
+    for(int k = 0; k < 5; k++){
+        displayedBoard[k] = new char[5];
+        displayedBoard2[k] = new char[5];
+        
+    }
+    //Generating both initial states of the boards
+    UserBoard userInterface(5, 5, displayedBoard, player1);
+    userInterface.generateBoard(); 
 
-    // Create Player object using parameterized constructor
-    Player player2(2, 3, 80, 5);  // Player at position (2,3) with health 80 and 5 treasures
-    std::cout << "\nPlayer 2 Initial Stats:" << std::endl;
-    player2.displayStats();
+    BoardTiles gameBoard(5, 5, displayedBoard2, s1, s2);
+    gameBoard.generateBoard();
+    gameBoard.generateOpponent();
+    cout << gameBoard << endl << endl;
 
-    // Test setter methods
-    player1.setPosition(4, 4);
-    player1.setHealth(90);
-    player1.collectTreasure();  // Collect one treasure
+    //The controls of the user interaction
+    Controls gamePlay(userInput, s3, s4);
+    //Actual game play
+    while(j < 50){
+        cout << player1;
+        cout << userInterface;
+        previous_x = player1.getRow(); //update position at end to store PREVIOUS location
+        previous_y = player1.getCol();
+        cout << previous_x << " " << previous_y;
+        gamePlay.promptForMove(player1);
+        cout << "(" << player1.getRow() << ", " << player1.getCol() << ")" << endl;
+        userInterface.updateBoard(player1, gameBoard, previous_x, previous_y); //Uses previous location to check for trap
+       
+        if (checkGameStatus(player1)) {
+        cout << "Exiting game\n";
+        break;
+        }
 
-    std::cout << "\nPlayer 1 Updated Stats:" << std::endl;
-    player1.displayStats();
+        j++;
+    }
+    cout << endl << endl <<  gameBoard;
 
-    // Test health change (damage or healing)
-    player1.changeHealth(-10);  // Decrease health by 10 (damage)
-    std::cout << "\nPlayer 1 After Taking Damage:" << std::endl;
-    player1.displayStats();
-
-    // Test copy constructor
-    Player player3 = player2;  // Copy player2 to player3
-    std::cout << "\nPlayer 3 (Copied from Player 2) Stats:" << std::endl;
-    player3.displayStats();
 
     return 0;
 }
