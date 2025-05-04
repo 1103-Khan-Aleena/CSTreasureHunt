@@ -24,7 +24,7 @@ Controls::Controls(const Controls& other) {
     isBounded = other.isBounded;
 }
 
-// Method to check if the input is valid (WASD for example)
+// Method to check if the input is valid (WASD)
 bool Controls::checkValidInput() {
     if (userInput == 'W' || userInput == 'A' || userInput == 'S' || userInput == 'D' ||
         userInput == 'w' || userInput == 'a' || userInput == 's' || userInput == 'd') {
@@ -35,9 +35,52 @@ bool Controls::checkValidInput() {
     return isValid;
 }
 
+ 
+void Controls::promptForMove(Player& player) {// more of a main/helper function??
+    bool validMove = false;
+    do {
+    // Ask the user for input
+        cout << "Enter your move (WASD): ";
+        cin >> userInput;
+
+    // check if the input is valid
+    if (!checkValidInput()) {
+        cout << "Invalid input. Please try again." <<endl;  // If invalid input, continue the loop to prompt again
+    }
+       //temp store players current position at will return to this if the user puts in an out of bound option
+        int tempRow=player.getRow();
+        int tempCol=player.getCol();
+    
+        if (userInput== 'W' || userInput== 'w'){
+            player.setRow(player.getRow() - 1);// should move up
+        }
+        else if(userInput=='A' ||userInput=='a'){
+            player.setCol(player.getCol() - 1);
+        }
+        else if(userInput=='S'||userInput=='s'){
+            player.setRow(player.getRow() + 1);
+           
+        }
+        else if(userInput=='D'||userInput=='d'){
+           player.setCol(player.getCol() + 1);
+           
+        }
+
+        // check if the move is within bounds
+         if (player.getRow() < 0 || player.getRow() >= 5 || player.getCol() < 0 || player.getCol() >= 5) {
+            cout << "Move out of bounds! Try again." << endl;
+            player.setRow(tempRow);
+            player.setCol(tempCol);
+        } else {
+            validMove = true;  // If the move is valid and within bounds, exit the loop
+        }
+
+    } while (!validMove);  // Continue looping until the move is valid and within bounds
+}
+
 // check if move is within boudns
 bool Controls::checkBound(Player& player) {
-    int row = player.getRow(); 
+   int row = player.getRow(); 
     int col = player.getCol();
     if (row >= 0 && row < 5 && col >= 0 && col < 5) {
         isBounded = true;
@@ -46,52 +89,6 @@ bool Controls::checkBound(Player& player) {
     }
     return isBounded;
     }
- 
-    void Controls::promptForMove(Player& player) {// more of a main function??
-        bool validMove = false;
-        do {
-        // Ask the user for input
-            cout << "Enter your move (WASD): ";
-            cin >> userInput;
-
-        // check if the input is valid
-        if (!checkValidInput()) {
-            cout << "Invalid move. Please try again." <<endl;  // If invalid input, continue the loop to prompt again
-        }
-        
-            if (userInput== 'W' || userInput== 'w'){
-                player.setRow(player.getRow() - 1);// should move up
-            }
-            else if(userInput=='A' ||userInput=='a'){
-                player.setCol(player.getCol() - 1);
-            }
-            else if(userInput=='S'||userInput=='s'){
-                player.setRow(player.getRow() + 1);
-            }
-            else if(userInput=='D'||userInput=='d'){
-                player.setCol(player.getCol() + 1);
-            }
-            else{
-                cout<<"invalid move :("<< endl;
-                return;
-            }
-            //upadte the player position 
-            //player.setRow();
-            //player.setCol();
-
-        // upadate board after everymove
-       // board.generateBoard(); cant do this bc boar dis an abbsract class 
-       //update the users postion after they move,so player.setRow/set Col to upadted spot
-        // check if the move is within bounds
-        if (!checkBound(player)) {
-            cout << "Move out of bounds! Try again." << endl;
-        } else {
-            validMove = true;  // If the move is valid and within bounds, exit the loop
-        }
-
-    } while (!validMove);  // Continue looping until the move is valid and within bounds
-}
-
 // Getter for userInput
 char Controls::getUserInput() {
     return userInput;

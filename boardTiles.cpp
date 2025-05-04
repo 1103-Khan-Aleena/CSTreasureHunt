@@ -121,7 +121,6 @@ void BoardTiles::generateOpponent(){
     while(i < 1){ //generates 1 opponent
         opp_x = generateRandomInt();
         opp_y = generateRandomInt();
-        cout << opp_x << ", " << opp_y;
         isEmpty = checkEmpty(opp_x, opp_y);
         if(isEmpty == true){
             grid[opp_x][opp_y] = 'O';

@@ -20,7 +20,7 @@ class UserBoard: public Board{
         void generateBoard() override; //Override in child
 
         //Other Method
-        void updateBoard(Player& p, BoardTiles&);
+        void updateBoard(Player& p, BoardTiles&, int,int);
 
 };
 #endif

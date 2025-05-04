@@ -38,25 +38,18 @@ void UserBoard::setPlayer(Player p){
     player = p;
 }
 
-void UserBoard::updateBoard(Player& p, BoardTiles& gameBoard){
-    int player_x, player_y;
+void UserBoard::updateBoard(Player& p, BoardTiles& gameBoard, int pre_x, int pre_y){
+    int player_x, player_y; //x and y do not follow a traditional (x,y) coordinate plane 
     player_x = p.getRow();
     player_y = p.getCol();
-    if(gameBoard.getElementAtTile(player_x, player_y) == 'X'){ //reference the actual gameboard
-        grid[player_x][player_y] = 'X'; //If its trap, it will now be on the displayed boards grid
+    if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'X'){ //Reference hidden board
+        grid[pre_x][pre_y] = 'X'; //They represent the rows and columns of the 2D array
+        grid[player_x][player_y] = 'P'; //If its trap, it will now be on the displayed boards grid, and player will be updated
+
     }
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < columns; j++){
-            if(i == player_x && j == player_y){ //x and y do not follow a traditional (x,y) coordinate plane        
-                grid[i][j] = 'P'; //They represent the rows and columns of the 2D array
-            }
-                /*else if(hidden.getElementAtTile(i, j) == 'X'){ //Reference hiddent board
-                    grid[i][j] = 'X';
-                }*/
-            else{
-                grid[i][j] = ' ';
-            }
-        }
+    else{
+        grid[pre_x][pre_y] = ' ';
+        grid[player_x][player_y] = 'P';
     }
 }
 
