@@ -17,7 +17,7 @@ bool checkGameStatus(Player& player){
     }
     return false;// continues the game 
 }
-//extra credit idk if this will even work 
+//extra credit idk if this will even work directly copied and pasted from PA2 
 int loadLeaderboardFromUserFiles(string names[], int wins[]) {
     DIR *directoryPtr = opendir(".");
     struct dirent *directoryEntry;
