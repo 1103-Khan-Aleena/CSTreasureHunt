@@ -1,7 +1,6 @@
 #include "userBoard.h"
-#include "boardTiles.h"
 #include "controls.h"
-#include "helpers.h"
+
 
 int main(){
     Player player1(0, 0, 100, 0);
@@ -30,25 +29,16 @@ int main(){
     //The controls of the user interaction
     Controls gamePlay(userInput, s3, s4);
     //Actual game play
-    while(j < 50){
+    while(j < 10){
         cout << player1;
         cout << userInterface;
         previous_x = player1.getRow(); //update position at end to store PREVIOUS location
         previous_y = player1.getCol();
-        cout << previous_x << " " << previous_y;
         gamePlay.promptForMove(player1);
-        cout << "(" << player1.getRow() << ", " << player1.getCol() << ")" << endl;
         userInterface.updateBoard(player1, gameBoard, previous_x, previous_y); //Uses previous location to check for trap
-       
-        if (checkGameStatus(player1)) {
-        cout << "Exiting game\n";
-        break;
-        }
-
+        cout << endl;
         j++;
     }
     cout << endl << endl <<  gameBoard;
-
-
     return 0;
 }
