@@ -1,4 +1,5 @@
 #include "userBoard.h"
+
 //Virtual Method Implementation
 void UserBoard::generateBoard(){
     int player_x, player_y;
@@ -43,6 +44,10 @@ void UserBoard::updateBoard(Player& p, BoardTiles& gameBoard, int pre_x, int pre
     player_x = p.getRow();
     player_y = p.getCol();
     if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'X'){ //Reference hidden board
+        if(getElementAtTile(pre_x, pre_y) != 'X'){
+            p - 20;
+            cout << p.getHealth() << endl;        
+        }
         grid[pre_x][pre_y] = 'X'; //They represent the rows and columns of the 2D array
         grid[player_x][player_y] = 'P'; //If its trap, it will now be on the displayed boards grid, and player will be updated
 

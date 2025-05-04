@@ -33,9 +33,9 @@ int main(){
     while(j < 10){
         cout << player1;
         cout << userInterface;
-        cout << previous_x << " " << previous_y;
         previous_x = player1.getRow(); //update position at end to store PREVIOUS location
         previous_y = player1.getCol();
+        cout << previous_x << " " << previous_y;
         gamePlay.promptForMove(player1);
         cout << "(" << player1.getRow() << ", " << player1.getCol() << ")" << endl;
         userInterface.updateBoard(player1, gameBoard, previous_x, previous_y); //Uses previous location to check for trap

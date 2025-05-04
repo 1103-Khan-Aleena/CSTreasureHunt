@@ -16,7 +16,7 @@ public:
     // Parameterized constructor
     Player(int, int, int, int);
     //row, col, health, treasuresCollected
-   //cppy construtor
+   //copy construtor
     Player(const Player&);
 
     // Getters
@@ -30,12 +30,10 @@ public:
     void setCol(int);
     void setPosition(int, int);
     void setHealth(int);
-    void changeHealth(int);
     void collectTreasure();
 
      //operator overloads
-    Player operator+(const Player& other) const;
-    Player operator-(const Player& other) const;
+    Player& operator-(int amount);
     friend ostream& operator<<(ostream&, const Player&);
 };
 #endif

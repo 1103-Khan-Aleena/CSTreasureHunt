@@ -48,14 +48,18 @@ void Player::setPosition(int newRow, int newCol){
 void Player::setHealth(int newHealth){
     health=newHealth;
 }
-void Player::changeHealth(int change){
-    health+=change;
-}
 void Player::collectTreasure(){
     treasuresCollected++;
 }
 
+//operator overloads
 ostream& operator<<(ostream& out, const Player& p){
     out << "Health: " << p.getHealth() << " | Treasures: " << p.getTreasures() << endl;
     return out;
+}
+
+//Subtracter Operator Overload
+Player& Player::operator-(int amount){
+    health -= amount;
+    return *this;
 }
