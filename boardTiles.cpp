@@ -113,8 +113,8 @@ void BoardTiles::generateOpponent(){
     int i = 0;
     for(int j = 0; j < rows; j++){
         for(int k = 0; k < columns; k++){
-            if(grid[j][j] == 'O'){
-                grid[i][j] = '.';
+            if(grid[j][k] == 'O'){
+                grid[j][k] = '.';
             }
         }
     }

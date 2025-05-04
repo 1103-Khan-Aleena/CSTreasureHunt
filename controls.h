@@ -2,7 +2,7 @@
 #define CONTROLS_H
 #include <iostream> 
 #include "player.h"
-#include "board.h"
+
 class Controls {
 private:
     char userInput;    // Stores the player's input character

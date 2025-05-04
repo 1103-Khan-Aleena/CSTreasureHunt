@@ -1,7 +1,7 @@
 #ifndef USER_BOARD_H
 #define USER_BOARD_H
+#include "boardTiles.h"
 #include "player.h"
-#include "board.h"
 
 class UserBoard: public Board{
     Player player;
@@ -20,7 +20,7 @@ class UserBoard: public Board{
         void generateBoard() override; //Override in child
 
         //Other Method
-        void updateBoard(Player& p);
+        void updateBoard(Player& p, BoardTiles&);
 
 };
 #endif

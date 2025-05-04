@@ -1,5 +1,5 @@
-boards: player.o helpers.o main.o controls.o board.o userBoard.o board_tiles.o 
-	g++ -o boards player.o helpers.o main.o controls.o board.o userBoard.o boardTiles.o  -g
+game: player.o helpers.o main.o controls.o board.o userBoard.o board_tiles.o 
+	g++ -o game player.o helpers.o main.o controls.o board.o userBoard.o boardTiles.o  -g
 
 player.o: player.cpp player.h
 	g++ -c player.cpp -g 
@@ -23,4 +23,4 @@ board_tiles.o: boardTiles.cpp boardTiles.h
 	g++ -c boardTiles.cpp -g
 
 clean:
-	rm *.o boards
+	rm *.o game

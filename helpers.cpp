@@ -1,49 +1,28 @@
 #include "helpers.h"
 
 int generateRandomInt(){
-    int generatedNumber = rand() % 5; //Because i want an interval between 0 and 4, using the remainder limits its range
+    int generatedNumber = (rand() % 4) + 1; //Because i want an interval between 0 and 4, using the remainder limits its range
     return generatedNumber;
 }
 
-bool checkSurrounding(int r, int c, BoardTiles& gameBoard){ // 
-    char above = gameBoard.getElementAtTile(r, c - 1);
-    char below = gameBoard.getElementAtTile(r, c + 1);
-    char right = gameBoard.getElementAtTile(r + 1, c);
-    char left = gameBoard.getElementAtTile(r - 1, c);
-    if(r == 0 || c == 0){
-        if(c == 0){
-            if(right == 'X' && below == 'X'){ //Corner case at (0,0)
-                return true;
-            }
-            if(above == 'X' && right == 'X' && below == 'X'){ //Regular case not at the corner of the board
-                return true;
-            }
-        }
-        else if(c == 4){
-            if(left == 'X' && below == 'X'){ //Corner case at (0,4)
-                return true;
-            }
-            if(above == 'X' && left == 'X' && below == 'X'){
-                return true;
-            }
-        }
-        else if(r == 0){
-            if(left == 'X' && below == 'X' && right == 'X'){
-                return true;
-            }
-        }
-        else if(r == 4){
-            if(left == 'X' && above == 'X' && right == 'X'){
-                return true;
-            }
-        }
-         return false; //None of those conditions met, returns false that the treasure is not surrouned  
+//void updateAll(Player& p, BoardTiles& game, UserBoard& user){
+    /*int player_x, player_y;
+    player_x = p.getRow();
+    player_y = p.getCol();
+    if(game.getElementAtTile(player_x, player_y) == 'X'){ //reference the actual gameboard
+        user.setElementAtTile(player_x, player_y, 'X'); //If its trap, it will now be on the displayed boards grid
     }
-    else{
-        if(above == 'X' && below == 'X' && left == 'X' && right == 'X'){
-            return true;
+    for(int i = 0; i < user.getRows(); i++){
+        for(int j = 0; j < user.getColumns(); j++){
+            if(i == player_x && j == player_y){ //x and y do not follow a traditional (x,y) coordinate plane        
+                user.setElementAtTile(i, j, 'P'); //They represent the rows and columns of the 2D array
+            }
+                else if(hidden.getElementAtTile(i, j) == 'X'){ //Reference hiddent board
+                    grid[i][j] = 'X';
+                }
+            else{
+                user.setElementAtTile(i, j, ' ');
+            }
         }
     }
-    return false;
-}
-
+}*/

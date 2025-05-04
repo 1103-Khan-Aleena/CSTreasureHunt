@@ -59,6 +59,10 @@ void Board::setColumns(int c){
     columns = c;
 }
 
+void Board::setElementAtTile(int r, int c, char element){
+    grid[r][c] = element;
+}
+
 //Destructor
 Board::~Board(){
     for(int i = 0; i < rows; i++){

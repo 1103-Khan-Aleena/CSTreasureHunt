@@ -38,10 +38,13 @@ void UserBoard::setPlayer(Player p){
     player = p;
 }
 
-void UserBoard::updateBoard(Player& p){
+void UserBoard::updateBoard(Player& p, BoardTiles& gameBoard){
     int player_x, player_y;
     player_x = p.getRow();
     player_y = p.getCol();
+    if(gameBoard.getElementAtTile(player_x, player_y) == 'X'){ //reference the actual gameboard
+        grid[player_x][player_y] = 'X'; //If its trap, it will now be on the displayed boards grid
+    }
     for(int i = 0; i < rows; i++){
         for(int j = 0; j < columns; j++){
             if(i == player_x && j == player_y){ //x and y do not follow a traditional (x,y) coordinate plane        

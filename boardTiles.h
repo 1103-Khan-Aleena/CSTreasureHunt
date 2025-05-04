@@ -2,8 +2,6 @@
 #define BOARD_TILES_H
 #include "board.h"
 #include "helpers.h"
-
-
 class BoardTiles: public Board{
     bool isSurrounded, isEmpty; //Bools act as stauts updates
 
