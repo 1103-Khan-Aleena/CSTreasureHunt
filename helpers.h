@@ -3,6 +3,10 @@
 #include <fstream>
 #include "time.h"
 #include "stdlib.h"
+#include "player.h"
+#include <iostream> 
+
 int generateRandomInt();
-//void updateAll(Player& p, BoardTiles&, UserBoard&);
+bool checkGameStatus(Player& player); //checks conditions for winning and losing
+
 #endif
