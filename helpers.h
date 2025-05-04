@@ -3,6 +3,8 @@
 #include "board.h"
 #include "userBoard.h"
 #include "boardTiles.h"
+#include "controls.h"
+#include "player.h"
 #include <fstream>
 #include "time.h"
 #include "stdlib.h"

@@ -1,25 +1,26 @@
 #ifndef USER_BOARD_H
 #define USER_BOARD_H
+#include "player.h"
 #include "board.h"
 
 class UserBoard: public Board{
-    //Player variable 
-    int x, y; //Temporary player coordninates, delete after combining
+    Player player;
 
     public:
         //Constructors
         UserBoard();
-        UserBoard(int, int, char**, int, int);
+        UserBoard(int, int, char**, Player);
         UserBoard(const UserBoard&);
 
         //Getters and setters
-        int getX() const;
-        int getY() const;
-        void setX(int);
-        void setY(int);
+        Player getPlayer() const;
+        void setPlayer(Player);
 
         //Virtual method child declariation 
         void generateBoard() override; //Override in child
+
+        //Other Method
+        void updateBoard(Player& p);
 
 };
 #endif
