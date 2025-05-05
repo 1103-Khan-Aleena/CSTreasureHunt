@@ -31,6 +31,9 @@ class Board{
         ~Board();
         Board& operator=(const Board&);
 
+        template <typename T>
+        void clearBoard(T&, int r, int c);
+
         //Insertion operator
         friend ostream& operator<<(ostream&, const Board&);
 };
