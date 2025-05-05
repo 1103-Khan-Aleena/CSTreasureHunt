@@ -3,6 +3,32 @@
 #include "userBoard.h"
 
 int main() {
+
+    string names[50]; // array to store up to 50 useranmesOr [10] if you want strictly 10
+    int wins[50];// array to store up to 50 wins
+
+    int numPlayers = loadLeaderboardFromUserFiles(names, wins);
+
+    char choice;
+    cout<<"View leaderboard? (y/n):"; //gives the user the choice to view the leaderbaord or not
+    cin>>choice;
+    if (choice == 'y' || choice == 'Y') {
+    
+    //display leaderboard 
+    cout << "Top " << 10 << " players:\n";
+
+    // Loop through each player and print their rank, name, and win count
+        for (int i = 0; i <10; i++) {
+           cout << (i + 1) << ". " << names[i] << " - " << wins[i] << " wins\n";
+        }
+    }
+    // Write leaderboard to file
+    ofstream outFile("leaderboard.txt");// Open a file called "leaderboard.txt" for writing
+    for (int i = 0; i < 10; i++) {
+        outFile << (i + 1) << ". " << names[i] << " - " << wins[i] << " wins\n"; // Write same output 
+    }
+    outFile.close();
+
     Player player1(0, 0, 100, 0);
     char** displayedBoard = new char*[5];
     char** displayedBoard2 = new char*[5];
@@ -39,22 +65,6 @@ int main() {
         j++;
     }
 
-    string names[50]; // Or [10] if you want strictly 10
-    int wins[50];
-
-    int numPlayers = loadLeaderboardFromUserFiles(names, wins);
-
-    cout << "Top " << numPlayers << " players:\n";
-    for (int i = 0; i < numPlayers; i++) {
-        cout << (i + 1) << ". " << names[i] << " - " << wins[i] << " wins\n";
-    }
-
-    // Write leaderboard to file
-    ofstream outFile("leaderboard.txt");
-    for (int i = 0; i < numPlayers; i++) {
-        outFile << (i + 1) << ". " << names[i] << " - " << wins[i] << " wins\n";
-    }
-    outFile.close();
-
+   
     return 0;
 }
