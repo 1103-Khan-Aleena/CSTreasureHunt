@@ -94,3 +94,12 @@ ostream& operator<<(ostream& out, const Board& b){
     }
     return out;
 }
+
+template <typename T>
+void Board::clearBoard(T& board, int r, int c){
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < c; j++){
+            board[i][j] = ' ';
+        }
+    }
+}

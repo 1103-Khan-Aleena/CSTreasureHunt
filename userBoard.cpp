@@ -44,6 +44,7 @@ void UserBoard::updateBoard(Player& p, BoardTiles& gameBoard, int pre_x, int pre
     player_x = p.getRow();
     player_y = p.getCol();
     if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'X'){ //Reference hidden board
+        cout << "ARHHH YOU STEPPED ON A TRAP 💣💥" << endl;
         if(getElementAtTile(pre_x, pre_y) != 'X'){
             p - 20;
         }
@@ -52,12 +53,14 @@ void UserBoard::updateBoard(Player& p, BoardTiles& gameBoard, int pre_x, int pre
 
     }
     else if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'T'){ //Reference hidden board
+        cout << "Hooray you collected a piece of treasure! 👑"  << endl;
         gameBoard.setElementAtTile(pre_x, pre_y, '.'); //Once tresures is collected the game board updates that spot to empty
         p.collectTreasure();
         grid[pre_x][pre_y] = ' ';
         grid[player_x][player_y] = 'P';
     }
     else if(gameBoard.getElementAtTile(pre_x, pre_y) ==  'O'){ //Reference hidden board
+        cout << "ARHHH AN OPPONENT GOT YOU 😈⚔️" << endl;
         gameBoard.setElementAtTile(pre_x, pre_y, '.'); //after opponent is uncovered the spot is now empty
         p - 30; //Opponent decremenets by 30 health
         grid[pre_x][pre_y] = ' ';
