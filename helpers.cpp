@@ -25,7 +25,7 @@ int loadLeaderboardFromUserFiles(string names[], int wins[]) {
     int numPlayers = 0;
 
     if (directoryPtr) {
-        while ((directoryEntry = readdir(directoryPtr)) != NULL && numPlayers < 10) {
+        while ((directoryEntry = readdir(directoryPtr)) != NULL) {// keeps looping through all files in directory
             string filename = directoryEntry->d_name;
 
             // Manually check if filename ends with ".txt" not using substr
